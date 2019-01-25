@@ -35,6 +35,7 @@
             this.createBtn = new System.Windows.Forms.Button();
             this.picMaze = new System.Windows.Forms.PictureBox();
             this.saveBtn = new System.Windows.Forms.Button();
+            this.solveBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picMaze)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,8 +86,9 @@
             // picMaze
             // 
             this.picMaze.Location = new System.Drawing.Point(12, 62);
+            this.picMaze.MinimumSize = new System.Drawing.Size(420, 260);
             this.picMaze.Name = "picMaze";
-            this.picMaze.Size = new System.Drawing.Size(404, 231);
+            this.picMaze.Size = new System.Drawing.Size(420, 260);
             this.picMaze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picMaze.TabIndex = 4;
             this.picMaze.TabStop = false;
@@ -101,12 +103,23 @@
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
+            // solveBtn
+            // 
+            this.solveBtn.Location = new System.Drawing.Point(215, 4);
+            this.solveBtn.Name = "solveBtn";
+            this.solveBtn.Size = new System.Drawing.Size(75, 23);
+            this.solveBtn.TabIndex = 6;
+            this.solveBtn.Text = "Solve";
+            this.solveBtn.UseVisualStyleBackColor = true;
+            this.solveBtn.Click += new System.EventHandler(this.solveBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(428, 305);
+            this.ClientSize = new System.Drawing.Size(438, 330);
+            this.Controls.Add(this.solveBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.picMaze);
             this.Controls.Add(this.createBtn);
@@ -131,5 +144,6 @@
         private System.Windows.Forms.Button createBtn;
         private System.Windows.Forms.PictureBox picMaze;
         private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.Button solveBtn;
     }
 }

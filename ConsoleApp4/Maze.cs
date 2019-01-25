@@ -11,9 +11,11 @@ namespace ConsoleApp4
     class Maze
     {
         public readonly Cell[,] _cells;
-        private int _width;
-        private int _height;
+        public int _width;
+        public int _height;
         public Stack<Cell> _path = new Stack<Cell>();
+        public List<Cell> _solve = new List<Cell>();
+        public List<Cell> _visited = new List<Cell>();
         public List<Cell> _neighbours = new List<Cell>();
         public Random rnd = new Random();
         public Cell start;
@@ -43,6 +45,58 @@ namespace ConsoleApp4
             _cells[start.X, start.Y] = start;
         }
 
+        public void SolveMaze()
+        {
+            bool flag = false;
+            foreach (Cell c in _cells)
+            {
+                if (_cells[c.X, c.Y]._isCell == true)
+                {
+                    _cells[c.X, c.Y]._isVisited = false;
+                }
+            }
+
+            _path.Clear();
+            _path.Push(start);
+
+            while (_path.Count != 0) //пока в стеке есть клетки ищем соседей и строим путь
+            {
+                if(_path.Peek().X == finish.X && _path.Peek().Y == finish.Y)
+                {
+                    flag = true;
+                }
+
+                if (!flag)
+                {
+                    _neighbours.Clear();
+                    GetNeighboursSolve(_path.Peek());
+                    if (_neighbours.Count != 0)
+                    {
+                        Cell nextCell = ChooseNeighbour(_neighbours);
+                        nextCell._isVisited = true; //делаем текущую клетку посещенной
+                        _cells[nextCell.X, nextCell.Y]._isVisited = true; //и в общем массиве
+                        _path.Push(nextCell); //затем добавляем её в стек
+                        _visited.Add(_path.Peek());
+                    }
+                    else
+                    {
+                        _path.Pop();
+                    }
+                }
+                else
+                {
+                    _solve.Add(_path.Peek());
+                    _path.Pop();
+                }
+
+
+            }
+
+
+            
+        }
+
+
         public void CreateMaze()
         {
             _cells[start.X, start.Y] = start;
@@ -66,6 +120,7 @@ namespace ConsoleApp4
 
             }
         }
+
         public void DrawGrid()
         {
             Console.CursorVisible = false;
@@ -97,6 +152,33 @@ namespace ConsoleApp4
             int x = localcell.X;
             int y = localcell.Y;
             const int distance = 2;
+            Cell[] possibleNeighbours = new[] // Список всех возможных соседeй
+            {
+                new Cell(x, y - distance), // Up
+                new Cell(x + distance, y), // Right
+                new Cell(x, y + distance), // Down
+                new Cell(x - distance, y) // Left
+            };
+            for (int i = 0; i < 4; i++) // Проверяем все 4 направления
+            {
+                Cell curNeighbour = possibleNeighbours[i];
+                if (curNeighbour.X > 0 && curNeighbour.X < _width && curNeighbour.Y > 0 && curNeighbour.Y < _height)
+                {// Если сосед не выходит за стенки лабиринта
+                    if (_cells[curNeighbour.X, curNeighbour.Y]._isCell && !_cells[curNeighbour.X, curNeighbour.Y]._isVisited)
+                    { // А также является клеткой и непосещен
+                        _neighbours.Add(curNeighbour);
+                    }// добавляем соседа в Лист соседей
+                }
+            }
+
+        }
+
+        private void GetNeighboursSolve(Cell localcell) // Получаем соседа текущей клетки
+        {
+
+            int x = localcell.X;
+            int y = localcell.Y;
+            const int distance = 1;
             Cell[] possibleNeighbours = new[] // Список всех возможных соседeй
             {
                 new Cell(x, y - distance), // Up
