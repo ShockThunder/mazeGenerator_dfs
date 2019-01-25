@@ -32,8 +32,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.txtHeight = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.createBtn = new System.Windows.Forms.Button();
             this.picMaze = new System.Windows.Forms.PictureBox();
+            this.saveBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picMaze)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(73, 20);
             this.txtWidth.TabIndex = 2;
+            this.txtWidth.Text = "10";
             // 
             // txtHeight
             // 
@@ -68,42 +70,52 @@
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.Size = new System.Drawing.Size(67, 20);
             this.txtHeight.TabIndex = 2;
+            this.txtHeight.Text = "10";
             // 
-            // button1
+            // createBtn
             // 
-            this.button1.Location = new System.Drawing.Point(215, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "create";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.createBtn.Location = new System.Drawing.Point(215, 33);
+            this.createBtn.Name = "createBtn";
+            this.createBtn.Size = new System.Drawing.Size(75, 23);
+            this.createBtn.TabIndex = 3;
+            this.createBtn.Text = "create";
+            this.createBtn.UseVisualStyleBackColor = true;
+            this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
             // 
             // picMaze
             // 
-            this.picMaze.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMaze.BackColor = System.Drawing.Color.White;
-            this.picMaze.Location = new System.Drawing.Point(12, 79);
+            this.picMaze.Location = new System.Drawing.Point(12, 62);
             this.picMaze.Name = "picMaze";
-            this.picMaze.Size = new System.Drawing.Size(776, 359);
+            this.picMaze.Size = new System.Drawing.Size(404, 231);
+            this.picMaze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picMaze.TabIndex = 4;
             this.picMaze.TabStop = false;
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.Location = new System.Drawing.Point(341, 4);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.TabIndex = 5;
+            this.saveBtn.Text = "Save picture";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(428, 305);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.picMaze);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.createBtn);
             this.Controls.Add(this.txtHeight);
             this.Controls.Add(this.txtWidth);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "MazeGenerator";
             ((System.ComponentModel.ISupportInitialize)(this.picMaze)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -116,7 +128,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtWidth;
         private System.Windows.Forms.TextBox txtHeight;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button createBtn;
         private System.Windows.Forms.PictureBox picMaze;
+        private System.Windows.Forms.Button saveBtn;
     }
 }
