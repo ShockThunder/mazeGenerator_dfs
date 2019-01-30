@@ -21,6 +21,7 @@ namespace ConsoleApp4
 
         private int CellWid, CellHgt;
         Maze inMaze = new Maze(10, 10);
+        Bitmap inBm = new Bitmap(1, 1);
 
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -55,11 +56,10 @@ namespace ConsoleApp4
             DrawSolve();
             void DrawSolve()
             {
-                Bitmap bm = new Bitmap(picMaze.Image);
 
                 Brush blueBrush = new SolidBrush(Color.Blue);
                 Brush pinkBrush = new SolidBrush(Color.Pink);
-                using (Graphics gr = Graphics.FromImage(bm))
+                using (Graphics gr = Graphics.FromImage(inBm))
                 {
                     gr.SmoothingMode = SmoothingMode.AntiAlias;
 
@@ -87,7 +87,7 @@ namespace ConsoleApp4
                         new Size(CellWid, CellWid)));
                 }
 
-                picMaze.Image = bm; //отображаем картинку
+                picMaze.Image = inBm; //отображаем картинку
 
             }
         }
@@ -105,6 +105,12 @@ namespace ConsoleApp4
             {
                 wid = int.Parse(txtWidth.Text);
                 hgt = int.Parse(txtHeight.Text);
+
+                if(wid == 0 || hgt == 0)
+                {
+                    throw new FormatException();
+                }
+
             }
             catch (System.FormatException)
             {
@@ -118,6 +124,7 @@ namespace ConsoleApp4
 
                 return;
             }
+
 
             int oddW = 0;
             int oddH = 0;
@@ -165,11 +172,11 @@ namespace ConsoleApp4
 
             void DrawMaze()
             {
-
+                inBm.Dispose();
                 //создаем битмап так, чтобы захватить и финиш и стенку за ним
                 Bitmap bm = new Bitmap(
                     CellWid * (maze.finish.X + 2),
-                    CellHgt * (maze.finish.Y + 2));
+                    CellHgt * (maze.finish.Y + 2), System.Drawing.Imaging.PixelFormat.Format16bppRgb555);
 
                 Brush whiteBrush = new SolidBrush(Color.White);
                 Brush blackBrush = new SolidBrush(Color.Black);
@@ -203,7 +210,8 @@ namespace ConsoleApp4
                         new Size(CellWid, CellWid)));
                 }
 
-                picMaze.Image = bm; //отображаем картинку
+                picMaze.Image = bm; //отображаем 
+                inBm = bm;
 
             }
         }

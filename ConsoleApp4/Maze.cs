@@ -47,7 +47,7 @@ namespace ConsoleApp4
 
         public void SolveMaze()
         {
-            bool flag = false;
+            bool flag = false; //флаг достижения финиша
             foreach (Cell c in _cells)
             {
                 if (_cells[c.X, c.Y]._isCell == true)
@@ -61,7 +61,7 @@ namespace ConsoleApp4
 
             while (_path.Count != 0) //пока в стеке есть клетки ищем соседей и строим путь
             {
-                if(_path.Peek().X == finish.X && _path.Peek().Y == finish.Y)
+                if (_path.Peek().X == finish.X && _path.Peek().Y == finish.Y)
                 {
                     flag = true;
                 }
@@ -88,12 +88,7 @@ namespace ConsoleApp4
                     _solve.Add(_path.Peek());
                     _path.Pop();
                 }
-
-
             }
-
-
-            
         }
 
 
